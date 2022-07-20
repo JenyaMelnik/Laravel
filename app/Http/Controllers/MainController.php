@@ -2,26 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use App\Services\Dogs\Dog;
 use App\Services\Dogs\Kolli;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index(Dog $dog): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function index(): Factory|View|Application
     {
-//        $dog = app(Dog::class);
-//        dump($dog);
-        return view('index');
+        $products = Product::get();
+        return view('index', compact('products'));
     }
 
-    public function categories(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function categories(): Factory|View|Application
     {
-        return view('categories');
+        $categories = Category::get();
+        return view('categories', compact('categories'));
     }
 
-    public function product(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function category($code): Factory|View|Application
     {
-        return view('product');
+        $category = Category::where('code', $code)->first();
+        return view('category', compact('category'));
+    }
+
+    public function product($category, $product = null): Factory|View|Application
+    {
+        return view('product', ['product' => $product]);
     }
 }

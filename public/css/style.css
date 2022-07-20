@@ -1,3 +1,6 @@
-h1 {
-    color: red;
+
+.item {
+    border: 2px solid darkblue;
+    max-width: 200px;
+    padding: 20px;
 }
