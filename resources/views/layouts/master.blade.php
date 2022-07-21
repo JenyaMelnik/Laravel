@@ -7,8 +7,6 @@
     <meta name="keywords" content="keywords">
     {{--    <link href="/css/normalize.css" rel="stylesheet">--}}
     <link href="/css/style.css" rel="stylesheet">
-    {{--    <script src="/js/methods_v1.js"></script>--}}
-    {{--    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -19,6 +17,13 @@
 </nav>
 
 <div>
+    @if(session()->has('success'))
+        <p>{{ session()->get('success') }}</p>
+    @endif
+    @if(session()->has('warning'))
+        <p>{{ session()->get('warning') }}</p>
+    @endif
+
     @yield('content')
 </div>
 

@@ -4,3 +4,11 @@
     max-width: 200px;
     padding: 20px;
 }
+
+div.form-inline form {
+    display: inline;
+}
+
+.td-basket {
+    width: 200px;
+}

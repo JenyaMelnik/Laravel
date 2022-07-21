@@ -10,6 +10,5 @@
             @csrf
         </form>
     </div>
-    <a href="{{ route('basket') }}"> В корзину </a>
     <a href="{{ route('product', [$product->category->code, $product->code]) }}">Подробнее</a>
 </div>

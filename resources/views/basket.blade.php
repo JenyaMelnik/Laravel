@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'корзина')
 
@@ -17,21 +17,23 @@
             <tbody>
             @foreach($order->products as $product)
                 <tr>
-                    <td>
+                    <td class="td-basket">
                         <a href="{{ route('product', [$product->category->code, $product->code]) }}">
                             {{ $product->name }}
                         </a>
                     </td>
                     <td>
-                        <span>{{ $product->pivot->count }}</span>
-                        <form action="{{ route('basket-add', $product) }}" method="POST">
-                            <button type="submit"> + </button>
-                            @csrf
-                        </form>
-                        <form action="{{ route('basket-remove', $product) }}" method="POST">
-                            <button type="submit"> - </button>
-                            @csrf
-                        </form>
+                        <div class="form-inline">
+                            <span>{{ $product->pivot->count }}</span>
+                            <form action="{{ route('basket-add', $product) }}" method="POST">
+                                <button type="submit"> +</button>
+                                @csrf
+                            </form>
+                            <form action="{{ route('basket-remove', $product) }}" method="POST">
+                                <button type="submit"> -</button>
+                                @csrf
+                            </form>
+                        </div>
                     </td>
                     <td> {{ $product->price }}</td>
                     <td> {{ $product->getPriceForCount() }}</td>
@@ -39,9 +41,13 @@
             @endforeach
             <tr>
                 <td colspan="3">Общая стоимость:</td>
-                <td>{{$order->getFullPrice()}}</td>
+                <td>{{ $order->getFullPrice() }}</td>
             </tr>
             </tbody>
         </table>
+        <br>
+        <div>
+            <a type="button" href="{{ route('basket-place') }}">Оформить заказ</a>
+        </div>
     </div>
 @endsection
