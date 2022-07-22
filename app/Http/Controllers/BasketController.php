@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -66,7 +67,14 @@ class BasketController extends Controller
         } else {
             $order->products()->attach($productId);
         }
+
+        if (Auth::check()) {
+            $order->user_id = Auth::id();
+            $order->save();
+        }
+
         $product = Product::find($productId);
+
         session()->flash('success', 'товар добавлен ' . $product->name);
 
         return redirect()->route('basket');

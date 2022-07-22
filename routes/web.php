@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\DogController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,22 +19,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes([
-    'reset'=>false,
-    'confirm'=>false,
-    'verify'=>false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
 ]);
 
-Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
+Route::group(['middleware' => 'is_admin'], function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('home');
+});
+
+Route::group(['prefix' => 'basket'], function () {
+    Route::post('/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
+
+    Route::group([
+        'middleware' => 'basket_not_empty',
+    ], function () {
+        Route::get('/', [BasketController::class, 'basket'])->name('basket');
+        Route::get('/place', [BasketController::class, 'basketPlace'])->name('basket-place');
+
+        Route::post('/remove/{id}', [BasketController::class, 'basketRemove'])->name('basket-remove');
+        Route::post('/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
+    });
+});
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
-
-Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
-Route::get('/basket/place', [BasketController::class, 'basketPlace'])->name('basket-place');
-Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
-Route::post('/basket/remove/{id}', [BasketController::class, 'basketRemove'])->name('basket-remove');
-Route::post('/basket/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
-
 
 Route::get('/{category}', [MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product?}', [MainController::class, 'product'])->name('product');
