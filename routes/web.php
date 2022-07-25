@@ -24,9 +24,20 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::group(['middleware' => 'is_admin'], function () {
-    Route::get('/orders', [OrderController::class, 'index'])->name('home');
+Route::group([
+    'middleware' => 'auth',
+    'namespace' => 'App\Http\Controllers\Admin',
+    'prefix' => 'admin',
+], function () {
+    Route::group(['middleware' => 'is_admin'], function () {
+        Route::get('/orders', [OrderController::class, 'index'])->name('home');
+    });
+
+    Route::resource('categories', 'CategoryController');
 });
+
+Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/categories', [MainController::class, 'categories'])->name('categories');
 
 Route::group(['prefix' => 'basket'], function () {
     Route::post('/add/{id}', [BasketController::class, 'basketAdd'])->name('basket-add');
@@ -41,9 +52,6 @@ Route::group(['prefix' => 'basket'], function () {
         Route::post('/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
     });
 });
-
-Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/categories', [MainController::class, 'categories'])->name('categories');
 
 Route::get('/{category}', [MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product?}', [MainController::class, 'product'])->name('product');

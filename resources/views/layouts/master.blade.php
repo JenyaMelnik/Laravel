@@ -12,7 +12,7 @@
 <body>
 <nav>
     <a href="{{route('index')}}">Все товары</a>
-    <a href="{{route('categories')}}">Категории</a>
+    <a href="{{route('categories.index')}}">Категории</a>
     <a href="{{route('basket')}}">В корзину</a>
 
     <div class="container">
