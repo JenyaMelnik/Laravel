@@ -19,6 +19,7 @@
                 <tr>
                     <td class="td-basket">
                         <a href="{{ route('product', [$product->category->code, $product->code]) }}">
+                            <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}">
                             {{ $product->name }}
                         </a>
                     </td>

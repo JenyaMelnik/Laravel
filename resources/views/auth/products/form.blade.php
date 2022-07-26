@@ -42,8 +42,17 @@
             <div>
                 <label for="category_id">Категория: </label>
                 <div>
-                    <input type="text" name="category_id"
-                           value="@isset ($product){{ $product->category_id }} @endisset">
+                    <select name="category_id">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}"
+                                    @isset($product)
+                                    @if($product->category_id == $category->id)
+                                    selected
+                                @endif
+                                @endisset
+                            >{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <br>

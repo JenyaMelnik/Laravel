@@ -25,7 +25,9 @@
             </tr>
             <tr>
                 <td>Картинка</td>
-                <td></td>
+                <td>
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" width="200">
+                </td>
             </tr>
             <tr>
                 <td>Цена</td>
