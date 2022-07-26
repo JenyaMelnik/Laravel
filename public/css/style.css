@@ -1,4 +1,6 @@
-
+nav a {
+    margin-left: 20px;
+}
 .item {
     border: 2px solid darkblue;
     max-width: 200px;
@@ -11,4 +13,8 @@ div.form-inline form {
 
 .td-basket {
     width: 200px;
+}
+
+.alert {
+    color: red;
 }

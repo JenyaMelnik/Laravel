@@ -24,26 +24,35 @@
             @endisset
             @csrf
             <div>
-                <label for=" code">Код: </label>
+                <label for="code">Код: </label>
                 <div>
+                    @error('code')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
                     <input type="text" name="code"
-                           value="@isset($category) {{ $category->code }} @endisset">
+                           value="{{ old('code', isset($category) ? $category->code : null) }}">
                 </div>
             </div>
             <br>
             <div>
                 <label for="name">Название: </label>
                 <div>
+                    @error('name')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
                     <input type="text" name="name"
-                           value="@isset($category) {{ $category->name }} @endisset">
+                           value="{{ old('name', isset($category) ? $category->name : null) }}">
                 </div>
             </div>
             <br>
             <div>
                 <label for="description">Описание: </label>
                 <div>
+                    @error('description')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
                     <textarea name="description" cols="72"
-                              rows="7">@isset($category) {{ $category->description }} @endisset</textarea>
+                              rows="7">{{ old('description', isset($category) ? $category->description : null) }}</textarea>
                 </div>
             </div>
             <br>

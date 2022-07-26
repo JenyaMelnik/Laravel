@@ -18,10 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <a href="{{route('index')}}">Все товары</a>
+            <a href="{{route('categories.index')}}">Категории</a>
+            <a href="{{route('basket')}}">В корзину</a>
 {{--            <div class="container">--}}
 {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
 {{--                    {{ config('app.name', 'Laravel') }}--}}
