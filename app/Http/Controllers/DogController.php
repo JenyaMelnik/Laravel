@@ -22,7 +22,7 @@ class DogController extends Controller
     /**
      *
      */
-    #[NoReturn] public function name()
+    public function name()
     {
         dump($this->dog->name());
         dump(app(Dog::class));
@@ -31,7 +31,7 @@ class DogController extends Controller
     /**
      *
      */
-    #[NoReturn] public function age()
+    public function age()
     {
         dd($this->dog->age());
     }
@@ -39,7 +39,7 @@ class DogController extends Controller
     /**
      *
      */
-    #[NoReturn] public function type()
+    public function type()
     {
         dd($this->dog->type());
     }

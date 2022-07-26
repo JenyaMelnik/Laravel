@@ -1,35 +1,35 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Категория ' . $category->name)
+@section('title', 'Товар ' . $product->name)
 
 @section('content')
     <div>
-        <h2>Категория {{ $category->name }}</h2>
+        <h2>Товар: {{ $product->name }}</h2>
         <table>
             <tbody>
             <tr>
                 <th>Поле</th>
-                <th>{{ $category->id }}</th>
+                <th>Значение</th>
             </tr>
             <tr>
                 <td>Код</td>
-                <td>{{ $category->code }}</td>
+                <td>{{ $product->code }}</td>
             </tr>
             <tr>
                 <td>Название</td>
-                <td>{{ $category->name }}</td>
+                <td>{{ $product->name }}</td>
             </tr>
             <tr>
                 <td>Описание</td>
-                <td>{{ $category->description }}</td>
+                <td>{{ $product->description }}</td>
             </tr>
             <tr>
                 <td>Картинка</td>
                 <td></td>
             </tr>
             <tr>
-                <td>Количество товаров</td>
-                <td>{{ $category->products->count() }}</td>
+                <td>Цена</td>
+                <td>{{ $product->price }}</td>
             </tr>
             </tbody>
         </table>
