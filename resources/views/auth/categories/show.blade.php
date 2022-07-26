@@ -25,7 +25,9 @@
             </tr>
             <tr>
                 <td>Картинка</td>
-                <td></td>
+                <td>
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($category->image) }}" width="150">
+                </td>
             </tr>
             <tr>
                 <td>Количество товаров</td>

@@ -1,5 +1,5 @@
 <div class="item">
-    <img src="/storage/app/image/iphone-11.jpg">
+    <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" width="150">
     <div>
         <h3>{{ $product->name }}</h3>
         <p>{{ $product->price }}</p>
