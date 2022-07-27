@@ -24,7 +24,13 @@
                     <td>{{ $order->getFullPrice() }}</td>
                     <td>
                         <div>
-                            <a type="button" href="">Открыть</a>
+                            <a type="button"
+                               @admin
+                               href="{{ route('orders.show', $order) }}"
+                               @else
+                               href="{{ route('person.orders.show', $order) }}"
+                                @endadmin
+                            >Открыть</a>
                         </div>
                     </td>
                 </tr>

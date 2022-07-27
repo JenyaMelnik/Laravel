@@ -18,3 +18,7 @@ div.form-inline form {
 .alert {
     color: red;
 }
+
+.active {
+    background-color: #a0aec0;
+}

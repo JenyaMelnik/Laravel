@@ -24,18 +24,32 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::group([
-    'middleware' => 'auth',
-    'namespace' => 'App\Http\Controllers\Admin',
-    'prefix' => 'admin',
-], function () {
-    Route::group(['middleware' => 'is_admin'], function () {
-        Route::get('/orders', [OrderController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('get-logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::group([
+        'prefix' => 'person',
+        'as' => 'person.',
+        #'namespace' => 'App\Http\Controllers\Person',
+    ], function () {
+        Route::get('/orders', [App\Http\Controllers\Person\OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [App\Http\Controllers\Person\OrderController::class, 'show'])->name('orders.show');
     });
 
-    Route::resource('categories', 'CategoryController');
-    Route::resource('products', 'ProductController');
+    Route::group([
+        'namespace' => 'App\Http\Controllers\Admin',
+        'prefix' => 'admin',
+    ], function () {
+        Route::group(['middleware' => 'is_admin'], function () {
+            Route::get('/orders', [OrderController::class, 'index'])->name('home');
+            Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        });
+
+        Route::resource('categories', 'CategoryController');
+        Route::resource('products', 'ProductController');
+    });
 });
+
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
@@ -48,7 +62,6 @@ Route::group(['prefix' => 'basket'], function () {
     ], function () {
         Route::get('/', [BasketController::class, 'basket'])->name('basket');
         Route::get('/place', [BasketController::class, 'basketPlace'])->name('basket-place');
-
         Route::post('/remove/{id}', [BasketController::class, 'basketRemove'])->name('basket-remove');
         Route::post('/place', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
     });
