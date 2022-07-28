@@ -7,6 +7,7 @@
     <meta name="keywords" content="keywords">
     {{--    <link href="/css/normalize.css" rel="stylesheet">--}}
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
