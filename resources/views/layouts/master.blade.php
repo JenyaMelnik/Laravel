@@ -16,7 +16,7 @@
             <li @routeactive('index')><a href="{{route('index')}}">Все товары</a></li>
             <li @routeactive('categories')><a href="{{route('categories')}}">Категории</a></li>
             <li @routeactive('basket*')><a href="{{route('basket')}}">В корзину</a></li>
-            <li><a href="{{route('index')}}">На главную</a></li>
+            <li><a href="{{route('reset')}}">Сбросить проект в первоначальное состояние</a></li>
         </ul>
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">

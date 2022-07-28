@@ -1,7 +1,7 @@
-<div class="item">
-    <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" width="150">
+<div class="item clearfix">
+    <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}" height="150">
     <div>
-        <h3>{{ $product->name }}</h3>
+        <b>{{ $product->name }}</b>
         <p>{{ $product->price }}</p>
     </div>
     <div>
