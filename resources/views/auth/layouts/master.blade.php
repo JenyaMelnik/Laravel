@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/starter-template.css" rel="stylesheet">
 </head>
@@ -29,66 +31,21 @@
         <a href="{{route('products.index')}}">Товары</a>
         <a href="{{route('home')}}">Заказы</a>
         @endadmin
-
-            @auth
-                @admin
-                <li><a href="{{ route('home') }}">Панель администратора</a></li>
-            @else
-                <li><a href="{{ route('person.orders.index') }}">Мои заказы</a></li>
-                @endadmin
-                <li><a href="{{ route('get-logout') }}">Выйти</a></li>
-            @endauth
-        {{--            <div class="container">--}}
-        {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
-        {{--                    {{ config('app.name', 'Laravel') }}--}}
-        {{--                </a>--}}
-        {{--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
-        {{--                    <span class="navbar-toggler-icon"></span>--}}
-        {{--                </button>--}}
-
-        {{--                <div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
-        {{--                    <!-- Left Side Of Navbar -->--}}
-        {{--                    <ul class="navbar-nav me-auto">--}}
-
-        {{--                    </ul>--}}
-
-        {{--                    <!-- Right Side Of Navbar -->--}}
-        {{--                    <ul class="navbar-nav ms-auto">--}}
-        {{--                        <!-- Authentication Links -->--}}
-        {{--                        @guest--}}
-        {{--                            @if (Route::has('login'))--}}
-        {{--                                <li class="nav-item">--}}
-        {{--                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
-        {{--                                </li>--}}
-        {{--                            @endif--}}
-
-        {{--                            @if (Route::has('register'))--}}
-        {{--                                <li class="nav-item">--}}
-        {{--                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-        {{--                                </li>--}}
-        {{--                            @endif--}}
-        {{--                        @else--}}
-        {{--                            <li class="nav-item dropdown">--}}
-        {{--                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-        {{--                                    {{ Auth::user()->name }}--}}
-        {{--                                </a>--}}
-
-        {{--                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">--}}
-        {{--                                    <a class="dropdown-item" href="{{ route('logout') }}"--}}
-        {{--                                       onclick="event.preventDefault();--}}
-        {{--                                                     document.getElementById('logout-form').submit();">--}}
-        {{--                                        {{ __('Logout') }}--}}
-        {{--                                    </a>--}}
-
-        {{--                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
-        {{--                                        @csrf--}}
-        {{--                                    </form>--}}
-        {{--                                </div>--}}
-        {{--                            </li>--}}
-        {{--                        @endguest--}}
-        {{--                    </ul>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
+        @guest
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Зарегистрироваться</a>
+                </li>
+            </ul>
+        @endguest
+        @auth
+            <a class="dropdown-item" href="{{ route('logout')}}">
+                Выйти
+            </a>
+        @endauth
     </nav>
     <main class="py-4">
         @yield('content')
@@ -96,3 +53,5 @@
 </div>
 </body>
 </html>
+
+

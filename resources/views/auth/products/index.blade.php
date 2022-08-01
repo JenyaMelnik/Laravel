@@ -37,6 +37,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $products->links('pagination::bootstrap-4') }}
         <a type="button" href="{{ route('products.create') }}">Добавить товар</a>
     </div>
 @endsection

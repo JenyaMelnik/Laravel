@@ -33,6 +33,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $categories->links('pagination::bootstrap-4') }}
         <a type="button" href="{{ route('categories.create') }}">Добавить категорию</a>
     </div>
 @endsection
