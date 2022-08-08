@@ -21,7 +21,7 @@
                     <td>{{ $order->name }}</td>
                     <td>{{ $order->phone }}</td>
                     <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
-                    <td>{{ $order->getFullPrice() }}</td>
+                    <td>{{ $order->getFullSum() }}</td>
                     <td>
                         <div>
                             <a type="button"
